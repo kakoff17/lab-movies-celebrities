@@ -50,16 +50,30 @@ router.get("/", (req, res, next) => {
 })
 
 router.get("/:moviesId", (req, res, next) => {
-    Movie.findById(req.params.moviesId)
-    .populate('cast')
-    .then((movie) => {        
+     Movie.findById(req.params.moviesId)
+    .populate("cast")
+    .then((movieDetails) => {   
+        //console.log(movieDetails)     
         res.render("movies/movie-details.hbs", {
-            movie
+            movieDetails
         }) 
     })
     .catch((error) => {
         next(error)
     })
 })
+
+router.post("/:moviesId/delete", (req, res, next) => {
+
+    Movie.findByIdAndDelete(req.params.moviesId)
+    .then(() => {
+        res.redirect("/movies")
+    })
+    .catch((error) => {
+        next(error)
+    })
+})
+
+
 
 module.exports = router;

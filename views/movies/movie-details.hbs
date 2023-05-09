@@ -1,0 +1,21 @@
+<div>
+
+  <h2>Detalles de la pelicula</h2>
+
+  {{#with this.movie}}
+
+    <h4>Titulo: {{title}}</h4>
+    <br />
+    <p>Genero: {{genre}}</p>
+    <br />
+    <p>Trama: {{plot}}</p>
+    <br>
+    <p>Cast:</p>
+    {{#each movie.cast}}
+        <p>El protagonista: {{this.name}} tiene como ocupación {{this.occupation}}
+          y su eslogan es {{this.catchPhrase}}</p>
+      {{/each}}
+
+  {{/with}}
+
+</div>
